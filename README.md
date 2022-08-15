@@ -4,14 +4,14 @@
 
 - [x] 1. Brainstorm ideas on what APP I want to create.
 
-- [ ] 2. Spring Boot: - HTTP POST and GET request
-                      - @PathVariable
-                      - @Controller & RestController
-                      - POST consumes "form-urlencoded" || JSON
-                      - Support more than 1 user
-                      - To include min 3 views excluding REST endpoints.
+- [ ] 2. Spring Boot: <br />- HTTP POST and GET request <br />
+                      - @PathVariable <br />
+                      - @Controller & RestController <br />
+                      - POST consumes "form-urlencoded" || JSON <br />
+                      - Support more than 1 user <br />
+                      - To include min 3 views excluding REST endpoints. <br />
 
-- [ ] 3. RESTful API: - HTTP request to RESTful API
+- [ ] 3. RESTful API: <br />- HTTP request to RESTful API <br />
                       - REST endpoints = "fakestoreapi.com"
 
 - [ ] 4. HTML/CSS:    - Use Bootstrap for HTML & CSS components
