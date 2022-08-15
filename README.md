@@ -14,6 +14,6 @@
 - [ ] 3. RESTful API: <br />- HTTP request to RESTful API <br />
                       - REST endpoints = "fakestoreapi.com"
 
-- [ ] 4. HTML/CSS:    - Use Bootstrap for HTML & CSS components
+- [ ] 4. HTML/CSS:    <br />- Use Bootstrap for HTML & CSS components
 
-- [ ] 5. Database:    - Redis database running in 'cloud'
+- [ ] 5. Database:    <br />- Redis database running in 'cloud'
