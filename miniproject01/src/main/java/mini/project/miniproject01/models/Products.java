@@ -6,7 +6,7 @@ import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 
-public class Store {
+public class Products {
     private String id;
     private String title;
     private Double price;
@@ -65,14 +65,14 @@ public class Store {
         this.count = count;
     }
 
-    public static Store create(String jsonStr){
+    public static Products create(String jsonStr){
         StringReader stringReader = new StringReader(jsonStr);
         JsonReader reader = Json.createReader(stringReader);
         return create(reader.readObject());
     }
 
-    public static Store create(JsonObject jo){
-        Store store = new Store();
+    public static Products create(JsonObject jo){
+        Products store = new Products();
         store.setId(jo.getString("id"));
         store.setTitle(jo.getString("title"));
         store.setCategory(jo.getString("category"));
@@ -83,9 +83,9 @@ public class Store {
         return store;
     }
 
-    public static Store createRating(JsonObject object){
+    public static Products createRating(JsonObject object){
 
-        Store rating = new Store();
+        Products rating = new Products();
         rating.setRate(object.getJsonNumber("rate").doubleValue());
         rating.setCount(object.getInt("count"));
 

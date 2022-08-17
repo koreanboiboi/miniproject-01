@@ -13,20 +13,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import mini.project.miniproject01.models.Store;
-import mini.project.miniproject01.services.StoreService;
+import mini.project.miniproject01.models.Products;
+import mini.project.miniproject01.services.ProductService;
 
 @Controller
 @RequestMapping("/products")
-public class StoreController {
+public class ProductsController {
 
     @Autowired
-    private StoreService storeSvc;
+    private ProductService productSvc;
 
     @GetMapping
     public String getAllProducts(Model model,HttpSession session){
 
-        List<Store> products = storeSvc.getAllProducts();
+        List<Products> products = productSvc.getAllProducts();
         //session.setAttribute("products", products);
         model.addAttribute("products", products);
 
