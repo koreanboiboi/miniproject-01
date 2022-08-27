@@ -11,7 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import mini.project.miniproject01.dto.ResponseDto;
+import mini.project.miniproject01.dto.user.SignInDto;
+import mini.project.miniproject01.dto.user.SignInResponseDto;
 import mini.project.miniproject01.dto.user.SignUpDto;
+import mini.project.miniproject01.exceptions.AuthFail;
 import mini.project.miniproject01.exceptions.CustomException;
 import mini.project.miniproject01.models.AuthToken;
 import mini.project.miniproject01.models.User;
@@ -62,6 +65,34 @@ public class UserService {
         String hash = DatatypeConverter.printHexBinary(digest).toUpperCase();
         
         return hash;
+    }
+
+    public SignInResponseDto signIn(SignInDto signinDto) {
+
+        User user = userRepo.findbyUserName(signinDto.getUsername());
+
+        if(Objects.isNull(user)){
+
+            throw new AuthFail("Invalid user");
+        }
+        
+        try {
+            if (!user.getPassword().equals(hashPassword(signinDto.getPassword()))){
+                throw new AuthFail("Wrong password");
+            }
+            
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        AuthToken token = authSvc.getToken(user); 
+
+        if(Objects.isNull(token)){
+
+            throw new CustomException("No token");
+        }
+        return new SignInResponseDto("Success", token.getToken());
+       
     }
     
 }

@@ -14,4 +14,8 @@ public class ExceptionControllerAdvice {
         return new ResponseEntity<>(exception.getMessage(),HttpStatus.BAD_REQUEST);
     }
     
+    @ExceptionHandler(value = AuthFail.class)
+    public final ResponseEntity<String> handleAuthFailException(AuthFail exception){
+        return new ResponseEntity<>(exception.getMessage(),HttpStatus.BAD_REQUEST);
+    }
 }

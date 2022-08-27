@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import mini.project.miniproject01.dto.ResponseDto;
+import mini.project.miniproject01.dto.user.SignInDto;
+import mini.project.miniproject01.dto.user.SignInResponseDto;
 import mini.project.miniproject01.dto.user.SignUpDto;
 import mini.project.miniproject01.services.UserService;
 
@@ -23,5 +25,12 @@ public class UserRestController {
         return userSvc.signUp(signUpDto);
 
     }
+
+    @PostMapping("/signin")
+    public SignInResponseDto signIn(@RequestBody SignInDto signinDto){
+
+        return userSvc.signIn(signinDto);
+    }
+
     
 }

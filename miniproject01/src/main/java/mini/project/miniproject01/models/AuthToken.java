@@ -70,6 +70,9 @@ public class AuthToken {
         this.token = UUID.randomUUID().toString();
     }
 
+    public AuthToken() {
+    }
+
     
     
     
