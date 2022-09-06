@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to your daily meal planner</title>
+</head>
+<body>
+    <!-- title,sourceUrl,image,summary -->
+    <form action="/random">
+        <input type="hidden">
+        <button type="submit">Get new recipe</button>
+        <div class="center" data-th-each="n:${randomRecipe}">
+            <img data-th-src="${n.image}">
+            <h1>Title: <span data-th-text="${n.title}"></span></h1>
+            <p>Instructions: <span data-th-text="${n.instructions}"></span></p>
+            <a th:href="@{''+${n.sourceUrl}}">Go to source link</a>
+            <hr class="solid">
+        </div>
+    </form>
+    <form action="/home">
+        <input type="hidden">
+        <button type="submit">Go back to home</button>
+    </form>
+</body>
+</html>
