@@ -1,0 +1,11 @@
+#homeBtn {
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+#newBtn {
+    position: fixed;
+    top:0;
+    left: 0;
+}

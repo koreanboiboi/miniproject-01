@@ -8,12 +8,35 @@ import jakarta.json.JsonReader;
 
 public class RandomRecipe {
 
+    
 
     private String title;
     private String sourceUrl;
     private String image;
     private String instructions;
+    private Long id;
+    private Long readyInMinutes;
+    private Long servings;
 
+    public Long getReadyInMinutes() {
+        return readyInMinutes;
+    }
+    public void setReadyInMinutes(Long readyInMinutes) {
+        this.readyInMinutes = readyInMinutes;
+    }
+    
+    public Long getServings() {
+        return servings;
+    }
+    public void setServings(Long servings) {
+        this.servings = servings;
+    }
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
     public String getInstructions() {
         return instructions;
     }
@@ -41,10 +64,11 @@ public class RandomRecipe {
 
     public static RandomRecipe create(String jsonString){
 
-        StringReader strReader = new StringReader(jsonString);
+       try(StringReader strReader = new StringReader(jsonString)){
         JsonReader reader = Json.createReader(strReader);
         
         return create(reader.readObject());
+       }
 
     }
 
@@ -55,6 +79,9 @@ public class RandomRecipe {
         randomRecipe.setImage(jo.getString("image"));
         randomRecipe.setInstructions(jo.getString("instructions"));
         randomRecipe.setSourceUrl(jo.getString("sourceUrl"));
+        randomRecipe.setId(jo.getJsonNumber("id").longValue());
+        randomRecipe.setReadyInMinutes(jo.getJsonNumber("readyInMinutes").longValue());
+        randomRecipe.setServings(jo.getJsonNumber("servings").longValue());
 
         return randomRecipe;
 
@@ -69,9 +96,13 @@ public class RandomRecipe {
                    .add("image", image)
                    .add("instructions", instructions)
                    .add("sourceUrl", sourceUrl)
+                   .add("id", id)
+                   .add("servings", servings)
+                   .add("readyInMinutes", readyInMinutes)
                    .build();
                 
     }
+  
     
    
 }

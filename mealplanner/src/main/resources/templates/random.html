@@ -15,7 +15,10 @@
             <img data-th-src="${n.image}">
             <h1>Title: <span data-th-text="${n.title}"></span></h1>
             <p>Instructions: <span data-th-text="${n.instructions}"></span></p>
-            <a th:href="@{''+${n.sourceUrl}}">Go to source link</a>
+            <p>Serving size: <span data-th-text="${n.servings}"></span></p>
+            <p>Cooking time (minutes): <span data-th-text="${n.readyInMinutes}"></span></p>
+            <a th:href="@{''+${n.sourceUrl}}" target="popup">Go to source link</a>
+            <h6>ID:<i data-th-text="${n.id}"></i></h6>
             <hr class="solid">
         </div>
     </form>
