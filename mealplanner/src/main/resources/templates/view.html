@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hi<span data-th-text="${UserName}"></span></h1>
+    <h1>Here are your saved Meals</h1>
+    <h1><span data-th-text="${SavedMeal}"></span></h1>
+    <form action="/home">
+        <button type="submit">Log out</button>
+    </form>
+    <form action="/menus">
+        <button type="submit">Go back to menu</button>
+    </form>
+</body>
+</html>

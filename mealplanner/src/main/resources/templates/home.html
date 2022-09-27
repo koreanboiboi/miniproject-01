@@ -7,17 +7,9 @@
     <title>back to home</title>
 </head>
 <body>
-    <h1>Welcome to Meal Planner!</h1>
-    <div>
-        <img src="C:\Users\yungi\VTTP\SSF\miniproject\mealplanner\src\main\resources\static\background.jpg" alt="">
-    </div>  
-    <form action="/random">
-        <input type="hidden">
-        <button type="submit">Get random recipe!</button>
-    </form>
-    <form action="/search">
-        <input type="hidden">
-        <button type="submit">Search for food recommendation!</button>
+    <form action="/menu" method="POST">
+        <input type="text" name="name" placeholder="Please input user name" required>
+        <button type="submit">LOGIN</button>
     </form>
 </body>
 </html>

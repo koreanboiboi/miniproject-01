@@ -1,47 +1,43 @@
 package mini.project.mealplanner.repositories;
 
-import java.time.Duration;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Repository;
-
-import mini.project.mealplanner.model.RandomRecipe;
+import org.springframework.util.MultiValueMap;
 
 @Repository
 public class RecipeRepository {
 
     @Autowired
-    private RedisTemplate<Object,String> redisTemp;
+    @Qualifier("redis")
+    private RedisTemplate<String,String> redisTemp;
 
-    public void saveRecipe(RandomRecipe recipe){
+    public void saveUser(String name){
 
-        redisTemp.opsForValue().set(recipe.getId(), recipe.toJson().toString());
-        redisTemp.expire(recipe.getId(), Duration.ofMinutes(5));
-        
-    }
-
-    public void saveRecipe(List<RandomRecipe> randomRecipe){
-        Map<Object,String> map = new HashMap<>();
-        for(RandomRecipe recipe: randomRecipe)
-        map.put(recipe.getId(), recipe.toJson().toString());
-        redisTemp.opsForValue().multiSet(map);
-
-        for (Object id: map.keySet())
-        redisTemp.expire(id, Duration.ofMinutes(5));
+        ValueOperations<String, String> ops = redisTemp.opsForValue();
+        ops.set("UserName", name);
 
     }
-    
-    public Optional<RandomRecipe> get(Object id){
 
-        if(!redisTemp.hasKey(id))
-        return Optional.empty();
+    public void saveMeal(MultiValueMap<String,String> form){
 
-        String data = redisTemp.opsForValue().get(id);
-        return Optional.of(RandomRecipe.create(data));
+        ValueOperations<String,String> ops = redisTemp.opsForValue();
+        ops.set("SavedMeal", form.getFirst("title"));
+
+    }
+
+    public void saveRandomMeal(MultiValueMap<String,String> form){
+
+        ValueOperations<String,String> ops = redisTemp.opsForValue();
+        ops.set("SavedMeal", form.getFirst("title"));
+
+    }
+
+    public void resetUser(){
+        ValueOperations<String,String> ops = redisTemp.opsForValue();
+        ops.getAndDelete("UserName");
+        ops.getAndDelete("SavedMeal");
     }
 }

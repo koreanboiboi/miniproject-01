@@ -8,8 +8,6 @@ import jakarta.json.JsonReader;
 
 public class RandomRecipe {
 
-    
-
     private String title;
     private String sourceUrl;
     private String image;

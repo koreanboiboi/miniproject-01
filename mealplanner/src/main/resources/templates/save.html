@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/home">
+        <button type="submit">Log out</button>
+    </form>
+    <form action="/search">
+        <button type="submit">New Search</button>
+    </form>
+    <form action="/random">
+        <button type="submit">Get Random</button>
+    </form>
+    <form action="/menus">
+        <button type="submit">Go to menu</button>
+    </form>
+    <h1>Meal name: <span data-th-text="${title}"></span> has been added</h1>
+    <form action="/view">
+        <button type="submit">View your saved items</button>
+    </form>
+</body>
+</html>

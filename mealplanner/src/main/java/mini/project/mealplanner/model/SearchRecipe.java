@@ -37,7 +37,18 @@ public class SearchRecipe {
     public void setImage(String image) {
         this.image = image;
     }
-    
+
+
+
+    public SearchRecipe(JsonObject jo) {
+
+        this.id= jo.getJsonNumber("id").longValue();
+        this.title=jo.getString("title");
+        this.image=jo.getString("image");
+        this.restaurantChain=jo.getString("restaurantChain");
+       
+
+    }
 
     public static SearchRecipe create(String jsonString){
 
@@ -51,11 +62,12 @@ public class SearchRecipe {
  
      public static SearchRecipe create(JsonObject jo){
  
-         SearchRecipe searchRecipe = new SearchRecipe();
+         SearchRecipe searchRecipe = new SearchRecipe(jo);
          searchRecipe.setTitle(jo.getString("title"));
          searchRecipe.setImage(jo.getString("image"));
          searchRecipe.setId(jo.getJsonNumber("id").longValue());
          searchRecipe.setRestaurantChain(jo.getString("restaurantChain"));
+   
  
          return searchRecipe;
  

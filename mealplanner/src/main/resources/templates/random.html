@@ -8,9 +8,7 @@
 </head>
 <body>
     <!-- title,sourceUrl,image,summary -->
-    <form action="/random">
-        <input type="hidden">
-        <button type="submit">Get new recipe</button>
+    <form method="POST" action="/random">
         <div class="center" data-th-each="n:${randomRecipe}">
             <img data-th-src="${n.image}">
             <h1>Title: <span data-th-text="${n.title}"></span></h1>
@@ -19,12 +17,19 @@
             <p>Cooking time (minutes): <span data-th-text="${n.readyInMinutes}"></span></p>
             <a th:href="@{''+${n.sourceUrl}}" target="popup">Go to source link</a>
             <h6>ID:<i data-th-text="${n.id}"></i></h6>
+            <input type="hidden" name="title" value="Submit" data-th-value="${n.title}" oninvalid="this.setCustomValidity('Oops you forgot to check this box!')" required>
+            <button>Add this to your meal plan!</button>
             <hr class="solid">
         </div>
     </form>
+    <form action="/random">
+        <button type="submit">Get new recipe</button>
+    </form>
+    <form action="/menu">
+        <button type="submit">Go back to menu</button>
+    </form>
     <form action="/home">
-        <input type="hidden">
-        <button type="submit">Go back to home</button>
+        <button type="submit">Log out</button>
     </form>
 </body>
 </html>

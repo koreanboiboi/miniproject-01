@@ -2,7 +2,6 @@ package mini.project.mealplanner.services;
 
 import java.io.Reader;
 import java.io.StringReader;
-import java.net.URLEncoder;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -22,17 +21,19 @@ import mini.project.mealplanner.model.SearchRecipe;
 @Service
 public class SearchRecipeService {
 
+
     private static final String URL = "https://api.spoonacular.com/food/menuItems/search";
 
     @Value("${apiKey}")
     private String key;
-    
 
-    public List<SearchRecipe> getSearch (String query){
+    public List<SearchRecipe> getSearch (String query, Integer maxCarbs, Integer maxCalories){
 
         
          String searchUrl = UriComponentsBuilder.fromUriString(URL)
                                              .queryParam("query", query)
+                                             .queryParam("maxCarbs", maxCarbs)
+                                             .queryParam("maxCalories", maxCalories)
                                              .queryParam("number", 5)
                                              .queryParam("apiKey", key)
                                              .toUriString();
@@ -56,7 +57,6 @@ public class SearchRecipeService {
         }
 
         return searchList;
-
-
     }
+    
 }
