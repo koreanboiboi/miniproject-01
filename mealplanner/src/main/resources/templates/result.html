@@ -11,8 +11,6 @@
 
     <h1>Search result for <span data-th-text="${query}"></span></h1>
     <div></div>
-    <h1>Minimum Calories: <span data-th-text="${maxCarbs}"></span></h1>
-    <div></div>
     <h1>Maximum Calories: <span data-th-text="${maxCalories}"></span></h1>
     <hr class="solid">
 
@@ -22,8 +20,8 @@
             <h1>Title: <span data-th-text="${s.title}"></span></h1>
             <p>Restaurant name: <span data-th-text="${s.restaurantChain}"></span></p>
             <h6>ID:<i data-th-text="${s.id}"></i></h6>
-            <input type="hidden" name="title" data-th-value="${s.title}" oninvalid="this.setCustomValidity('Oops you forgot to check this box!')" required>
-            <button>Add this to your meal plan!</button>
+            <input type="hidden" name="title" data-th-value="${s.title}">
+            <button>Add your search to your meal plan!</button>
             <hr class="solid">
         </div>
     </form>

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import mini.project.mealplanner.model.SearchRecipe;
-import mini.project.mealplanner.repositories.RecipeRepository;
 import mini.project.mealplanner.services.SearchRecipeService;
 
 @Controller
@@ -26,30 +25,36 @@ public class SearchRecipeController {
     @Autowired
     private SearchRecipeService searchSvc;
 
-    @Autowired
-    private RecipeRepository recipeRepo;
-
     @GetMapping
-    public String searchRecipe(Model model, @RequestParam String query, 
-                                            @RequestParam Integer maxCarbs, 
-                                            @RequestParam Integer maxCalories, HttpSession session){
+    public String searchRecipe(Model model, @RequestParam String query,
+                                            @RequestParam Long maxCalories,
+                                             HttpSession session){
 
-        List<SearchRecipe> searchRecipe = searchSvc.getSearch(query,maxCarbs,maxCalories);
+        List<SearchRecipe> searchRecipe = searchSvc.getSearch(query,maxCalories);
         session.setAttribute("searchRecipe", searchRecipe);
         model.addAttribute("query", query);
         model.addAttribute("searchRecipe", searchRecipe);
-        model.addAttribute("maxCarbs", maxCarbs);
         model.addAttribute("maxCalories", maxCalories);
 
         return "result";
-
     }
 
     @PostMapping
-    public String saveSearchRecipe(@RequestBody MultiValueMap<String,String> form, Model model){
+    public String saveSearchRecipe(@RequestBody MultiValueMap<String,String> form, Model model, HttpSession session){
 
-        recipeRepo.saveRandomMeal(form);
-        model.addAttribute("title", form.getFirst("title").toLowerCase());
+        List<SearchRecipe> searchList = (List<SearchRecipe>) session.getAttribute("searchRecipe");
+        List<String> save = form.get("title");
+        List<SearchRecipe> toSave = searchList.stream().filter(search -> {
+            for(String i : save)
+            if(i.equals(search.getTitle()))
+            return true;
+            return false;
+        }).toList();
+
+        if(toSave.size()>0)
+        searchSvc.save(toSave);
+        
+        model.addAttribute("title", searchList);
 
         return "save";
 

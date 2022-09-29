@@ -1,12 +1,19 @@
 package mini.project.mealplanner.model;
 
 import java.io.StringReader;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
+import mini.project.mealplanner.repositories.RecipeRepository;
 
 public class RandomRecipe {
+
+    @Autowired
+    private RecipeRepository recipeRepo;
 
     private String title;
     private String sourceUrl;
@@ -15,6 +22,7 @@ public class RandomRecipe {
     private Long id;
     private Long readyInMinutes;
     private Long servings;
+
 
     public Long getReadyInMinutes() {
         return readyInMinutes;
@@ -100,7 +108,22 @@ public class RandomRecipe {
                    .build();
                 
     }
-  
+
+    @Override
+	public String toString() {
+
+        return "%s (ID:%d)".formatted(title, id);
+    }
+    
+    public Optional<RandomRecipe> saveSearchById(String id){
+
+        Object result = recipeRepo.get(id);
+        if(result == null)
+        return Optional.empty();
+
+        return Optional.of(RandomRecipe.create((String)result));
+
+    }
     
    
 }

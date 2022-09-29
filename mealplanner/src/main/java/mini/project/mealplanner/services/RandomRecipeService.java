@@ -4,7 +4,9 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +19,13 @@ import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 import mini.project.mealplanner.model.RandomRecipe;
+import mini.project.mealplanner.repositories.RecipeRepository;
 
 @Service
 public class RandomRecipeService {
+
+    @Autowired
+    private RecipeRepository recipeRepo;
     
     private static final String RandomURL = "https://api.spoonacular.com/recipes/random";
     
@@ -52,6 +58,18 @@ public class RandomRecipeService {
 
         return randomList;
 
+    }
+
+    public void save(List<RandomRecipe> toSave) {
+		recipeRepo.saveRandomMeal(toSave);
+	}
+
+    public Optional<RandomRecipe> saveSearchById(String id) {
+        Object result = recipeRepo.get(id);
+        if(result == null)
+        return Optional.empty();
+
+        return Optional.of(RandomRecipe.create((String)result));
     }
 
 

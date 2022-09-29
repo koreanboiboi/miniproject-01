@@ -1,18 +1,25 @@
 package mini.project.mealplanner.model;
 
 import java.io.StringReader;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
+import mini.project.mealplanner.repositories.RecipeRepository;
 
 public class SearchRecipe {
+
+    @Autowired
+    private RecipeRepository recipeRepo;
 
     private Long id;
     private String title;
     private String restaurantChain;
     private String image;
-
+    
     public Long getId() {
         return id;
     }
@@ -38,15 +45,12 @@ public class SearchRecipe {
         this.image = image;
     }
 
-
-
     public SearchRecipe(JsonObject jo) {
 
         this.id= jo.getJsonNumber("id").longValue();
         this.title=jo.getString("title");
         this.image=jo.getString("image");
         this.restaurantChain=jo.getString("restaurantChain");
-       
 
     }
 
@@ -67,11 +71,9 @@ public class SearchRecipe {
          searchRecipe.setImage(jo.getString("image"));
          searchRecipe.setId(jo.getJsonNumber("id").longValue());
          searchRecipe.setRestaurantChain(jo.getString("restaurantChain"));
-   
  
          return searchRecipe;
- 
-         
+     
      }
  
      public JsonObject toJson(){
@@ -85,5 +87,12 @@ public class SearchRecipe {
                     .build();
                  
      }
+
+    @Override
+	public String toString() {
+
+        return "%s (ID:%d)".formatted(title, id);
+    }
+
     
 }

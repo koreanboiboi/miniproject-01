@@ -18,7 +18,7 @@ public class HomeController {
     @GetMapping
     public String resetUser(){
 
-        recipeRepo.resetUser();
+        recipeRepo.clear();
 
         return "home";
     }

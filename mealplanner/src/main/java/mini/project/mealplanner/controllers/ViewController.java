@@ -1,5 +1,7 @@
 package mini.project.mealplanner.controllers;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -22,11 +24,13 @@ public class ViewController {
 
         ValueOperations<String,String> ops = redisTemp.opsForValue();
         Object user = ops.get("UserName");
-        Object item = ops.get("SavedMeal");
+        Set<String> id = redisTemp.keys("*");
+
+        id.remove("UserName");
 
         model.addAttribute("UserName", user.toString());
-        model.addAttribute("SavedMeal", item.toString());
-
+        model.addAttribute("items", id);
+        
         return "view";
 
     }

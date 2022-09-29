@@ -17,7 +17,7 @@
             <p>Cooking time (minutes): <span data-th-text="${n.readyInMinutes}"></span></p>
             <a th:href="@{''+${n.sourceUrl}}" target="popup">Go to source link</a>
             <h6>ID:<i data-th-text="${n.id}"></i></h6>
-            <input type="hidden" name="title" value="Submit" data-th-value="${n.title}" oninvalid="this.setCustomValidity('Oops you forgot to check this box!')" required>
+            <input type="hidden" name="title" value="Submit" data-th-value="${n.title}">
             <button>Add this to your meal plan!</button>
             <hr class="solid">
         </div>

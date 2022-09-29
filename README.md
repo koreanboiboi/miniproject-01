@@ -4,13 +4,13 @@
 
 - [x] **1. Brainstorm ideas on what APP I want to create.**
 
-- [ ] **2. Spring Boot:** <br/>
+- [x] **2. Spring Boot:** <br/>
 - [x] HTTP POST and GET request <br/>
 - [x] Must include @PathVariable <br/>
 - [x] Must include @Controller & RestController <br/>
-- [ ] POST consumes "form-urlencoded" |or| JSON <br/>
-- [ ] Support more than 1 user <br/>
-- [ ] To include min 3 views excluding REST endpoints. <br/>
+- [x] POST consumes "form-urlencoded" |or| JSON <br/>
+- [x] Support more than 1 user <br/>
+- [x] To include min 3 views excluding REST endpoints. <br/>
 
 - [x] **3. RESTful API:**<br/>
 - [x] HTTP request to RESTful API<br/>
@@ -19,5 +19,5 @@
 - [ ] **4. HTML/CSS:**<br/>
 - [ ] Use Bootstrap for HTML & CSS components<br/>
 
-- [ ] **5. Database:**<br/>
-- [ ] Redis database running in 'cloud'<br/>
+- [x] **5. Database:**<br/>
+- [x] Redis database running in 'cloud'<br/>
