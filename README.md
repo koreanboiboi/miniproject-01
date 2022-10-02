@@ -16,8 +16,8 @@
 - [x] HTTP request to RESTful API<br/>
 - [x] REST endpoints must not be those that have been discussed before.<br/>
 
-- [ ] **4. HTML/CSS:**<br/>
-- [ ] Use Bootstrap for HTML & CSS components<br/>
+- [x] **4. HTML/CSS:**<br/>
+- [x] Use Bootstrap for HTML & CSS components<br/>
 
 - [x] **5. Database:**<br/>
 - [x] Redis database running in 'cloud'<br/>
