@@ -5,31 +5,66 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to your daily meal planner</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="random.css">
+    <!-- <link rel="stylesheet" href="menu.css"> -->
 </head>
 <body>
-    <!-- title,sourceUrl,image,summary -->
-    <form method="POST" action="/random">
-        <div class="center" data-th-each="n:${randomRecipe}">
-            <img data-th-src="${n.image}">
-            <h1>Title: <span data-th-text="${n.title}"></span></h1>
-            <p>Instructions: <span data-th-text="${n.instructions}"></span></p>
-            <p>Serving size: <span data-th-text="${n.servings}"></span></p>
-            <p>Cooking time (minutes): <span data-th-text="${n.readyInMinutes}"></span></p>
-            <a th:href="@{''+${n.sourceUrl}}" target="popup">Go to source link</a>
-            <h6>ID:<i data-th-text="${n.id}"></i></h6>
-            <input type="hidden" name="title" value="Submit" data-th-value="${n.title}">
-            <button>Add this to your meal plan!</button>
-            <hr class="solid">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/menus">Meal Planner</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/menus">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Menu
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="/search">Search Food</a></li>
+                  <li><a class="dropdown-item" href="/random">Recommendation</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="/view">Favorites</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" ></a>
+            </li>
+            </ul>
+            <form class="d-flex">
+            <a href="/home" class="btn btn-outline-dark" tabindex="-1" role="button" aria-disabled="true">Logout</a>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+      
+      <div class="card" style="width: 18rem;" data-th-each="n:${randomRecipe}">
+        <h2 data-th-text="${n.title}"></h2>
+        <img data-th-src="${n.image}" class="card-img-top" alt="Food Image">
+        <div class="card-body">
+        <h4 data-th-text="${n.title}"></h4>
+          <p class="card-text">How to prepare: <span data-th-text="${n.instructions}"></span></p>
+          <p>Cooking time(minutes): <span data-th-text="${n.readyInMinutes}"></span></p>
+          <p>Servings size <span data-th-text="${n.servings}"></span></p>
+          <p>ID: <span data-th-text="${n.id}"></span></h5>
+          <a th:href="@{''+${n.sourceUrl}}" target="popup">Go to source link</a>
+          <div class="rdmbtn">
+          <a href="/random" class="btn btn-outline-dark" tabindex="-1" role="button" aria-disabled="true">New Recommendation</a>
+        </div>
+        </div>
+      </div>
+      <form action="/random" method="POST">
+        <div class="center" data-th-each="s:${randomRecipe}">
+          <input type="hidden" name="title" data-th-value="${s.title}">
+          <button type="btn btn-outline-dark" tabindex="-1" role="button" aria-disabled="true" >Add to Favorite</button>
         </div>
     </form>
-    <form action="/random">
-        <button type="submit">Get new recipe</button>
-    </form>
-    <form action="/menu">
-        <button type="submit">Go back to menu</button>
-    </form>
-    <form action="/home">
-        <button type="submit">Log out</button>
-    </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

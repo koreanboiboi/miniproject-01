@@ -33,13 +33,12 @@ public class SearchRecipeService {
     @Value("${apiKey}")
     private String key;
 
-    public List<SearchRecipe> getSearch (String query, Long maxCalories){
+    public List<SearchRecipe> getSearch (String query){
 
         
          String searchUrl = UriComponentsBuilder.fromUriString(URL)
                                              .queryParam("query", query)
-                                             .queryParam("maxCalories", maxCalories)
-                                             .queryParam("number", 5)
+                                             .queryParam("number", 4)
                                              .queryParam("apiKey", key)
                                              .toUriString();
 

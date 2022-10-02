@@ -26,9 +26,9 @@ public class MenuController {
 
 
     @PostMapping
-    public String saveUser(@RequestParam String name, Model model){
+    public String saveUser(@RequestParam String name, String password, Model model){
 
-        recipeRepo.saveUser(name);
+        recipeRepo.saveUser(name,password);
         
         model.addAttribute("name",name);
 

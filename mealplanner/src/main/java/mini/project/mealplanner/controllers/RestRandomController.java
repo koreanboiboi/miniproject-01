@@ -27,7 +27,7 @@ public class RestRandomController {
     @GetMapping(value = "{id}")
     public ResponseEntity<String> getSearch(@PathVariable String id){
 
-        Optional<RandomRecipe> opt = randomSvc.saveSearchById(id);
+        Optional<RandomRecipe> opt = randomSvc.randomSearchById(id);
         if(opt.isEmpty()){
             JsonObject error = Json.createObjectBuilder()
                                 .add("error", "Cannot find food ID %s".formatted(id)).build();

@@ -27,14 +27,13 @@ public class SearchRecipeController {
 
     @GetMapping
     public String searchRecipe(Model model, @RequestParam String query,
-                                            @RequestParam Long maxCalories,
                                              HttpSession session){
 
-        List<SearchRecipe> searchRecipe = searchSvc.getSearch(query,maxCalories);
+        List<SearchRecipe> searchRecipe = searchSvc.getSearch(query);
         session.setAttribute("searchRecipe", searchRecipe);
         model.addAttribute("query", query);
         model.addAttribute("searchRecipe", searchRecipe);
-        model.addAttribute("maxCalories", maxCalories);
+        
 
         return "result";
     }

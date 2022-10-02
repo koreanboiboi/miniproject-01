@@ -14,9 +14,8 @@ public class HomeController {
     @Autowired
     private RecipeRepository recipeRepo;
 
-
     @GetMapping
-    public String resetUser(){
+    public String clearItem(){
 
         recipeRepo.clear();
 

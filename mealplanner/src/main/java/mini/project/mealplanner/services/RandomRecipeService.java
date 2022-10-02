@@ -64,7 +64,7 @@ public class RandomRecipeService {
 		recipeRepo.saveRandomMeal(toSave);
 	}
 
-    public Optional<RandomRecipe> saveSearchById(String id) {
+    public Optional<RandomRecipe> randomSearchById(String id) {
         Object result = recipeRepo.get(id);
         if(result == null)
         return Optional.empty();
