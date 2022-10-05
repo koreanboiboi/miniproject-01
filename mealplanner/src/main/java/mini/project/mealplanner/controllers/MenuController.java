@@ -30,7 +30,7 @@ public class MenuController {
 
         recipeRepo.saveUser(name,password);
         
-        model.addAttribute("name",name);
+        model.addAttribute("name","Welcome to meal planner "+name+"!");
 
         return "menu";
     }

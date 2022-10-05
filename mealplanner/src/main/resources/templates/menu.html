@@ -14,6 +14,9 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container-fluid">
           <a class="navbar-brand" href="/menu">Meal Planner</a>
+          <div class="wrapper">
+          <marquee behaviour="alternate"><span class="marquee" data-th-text="${name}"></span></marquee>
+          </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -92,7 +95,7 @@
                 <h2>Only recommend the best<br> food</h2>
                 <p>Here at Meal Planner we only provide the best food for your needs.
                 </p>
-                <a class="btn btn-warning">Learn More</a>
+                <a href="/random" class="btn btn-warning">Learn More</a>
             </div>
           </div>
         </div>
