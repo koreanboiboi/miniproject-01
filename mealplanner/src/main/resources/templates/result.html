@@ -47,11 +47,10 @@
      <div class="container" data-th-each="s:${searchRecipe}">
         <img data-th-src="${s.image}" alt="food image" class="image">
         <div class="overlay">
-          <div class="text" data-th-text="${s.title}"></div>
+          <!-- <div class="text" data-th-text="${s.title}"></div> -->
+          <input th:each="item : ${s.title}" type="submit" name="title" data-th-value="${s.title}" class="btn1">
           <div class="name">Shop Name: <span data-th-text="${s.restaurantChain}"></span></div>
           <div class="id">ID: <span data-th-text="${s.id}"></span></div>
-            <input type="hidden" name="title" data-th-value="${s.title}">
-            <button class="btn1">Add to Favorite</button>
         </div>
       </div>
     </form>
